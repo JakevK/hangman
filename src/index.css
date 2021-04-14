@@ -1,13 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,500&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  width: 100%;
+  background-color: #f6fbfe;
+  color: #041d2f;
+}
+.word-display-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10vw;
+}
+.word-display {
+  display: flex;
+  flex-direction: row;
+  gap: 1vw;
+}
+.word-display-character {
+  font-size: 4vw;
+  font-weight: medium;
+  margin: 0 5px 0 5px;
+  padding: 0;
+  text-align: center;
+  font-family: Montserrat;
+}
+.word-display-character-underline {
+  height: 0.3vw;
+  width: 100%;
+  border-radius: 0.2vw;
+  background-color: #041d2f;
+  align-self: flex-end;
+}
+.word-display-unit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 5vw;
+  gap: 0.6vw;
+}
+.keyboard {
+  font-size: #041d2f;
+  width: 60vw;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.keyboard button {
+  background-color: #f6fbfe;
+  border: none;
+  font-family: montserrat;
+  font-size: 2.6vw;
+  color: #041d2f;
+  width: 4.5vw;
+  height: 4.5vw;
+  text-align: center;
+  transition: background-color 0.2s, color 0.3s;
+  outline: none !important;
+  border-radius: 0.2vw;
+}
+.keyboard-button-enabled:hover {
+  /*color: #39a0ed; 
+  background-color: #C7E4FA;*/
+}
+.keyboard-button-correct {
+  color: #17b890 !important;
+}
+.keyboard-button-incorrect {
+  color: #ff8360 !important;
+}
+
+.win-message {
+  font-family: montserrat;
+  font-weight: bold;
+  color: #17b890;
+  font-size: 4vw;
+  display: flex;
+  flex-direction: column;
+  gap: 4vw;
+  align-items: center;
+}
+.win-message button {
+  background-color: #f6fbfe;
+  color: #041d2f;
+  border: 0.2vw solid #041d2f;
+  outline: none;
+  padding: 1vw 2vw;
+  font-family: montserrat;
+  font-weight: normal;
+  font-size: 2vw;
+  border-radius: 0.8vw;
 }
