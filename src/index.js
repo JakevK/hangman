@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import Gallows from "./Gallows";
 const randomWords = require("random-words");
 
 class Game extends React.Component {
@@ -9,12 +10,18 @@ class Game extends React.Component {
     this.state = {
       word: randomWords().split(""),
       guessed: [],
-      lives: 7,
+      lives: 6,
     };
   }
 
-
   render() {
+    const mistakes = this.state.guessed.filter(
+      (letter) => !this.state.word.includes(letter)
+    ).length;
+    const won = this.state.word.every((letter) =>
+      this.state.guessed.includes(letter)
+    );
+
     const wordDisplay = (
       <div className="word-display">
         {this.state.word.map((char) => (
@@ -22,7 +29,7 @@ class Game extends React.Component {
             <div key={char} className="word-display-character">
               {this.state.guessed.includes(char)
                 ? char
-                : String.fromCharCode(160)}
+                : (mistakes >= this.state.lives ? char : String.fromCharCode(160))}
             </div>
             <div className="word-display-character-underline"></div>
           </div>
@@ -42,7 +49,9 @@ class Game extends React.Component {
             }
             key={letter}
             onClick={() =>
-              this.state.guessed.includes(letter) ? "" : this.setState({ guessed: [...this.state.guessed, letter] })
+              this.state.guessed.includes(letter)
+                ? ""
+                : this.setState({ guessed: [...this.state.guessed, letter] })
             }
           >
             {letter}
@@ -51,13 +60,11 @@ class Game extends React.Component {
       </div>
     );
 
-    return (
-      <div className="word-display-container">
-        {wordDisplay}
-        {this.state.word.every((letter) =>
-          this.state.guessed.includes(letter)
-        ) ? (
-          <div className="win-message">
+    if (won) {
+      return (
+        <div className="word-display-container">
+          {wordDisplay}
+          <div className="msg-container win-message">
             You won!
             <button
               onClick={() =>
@@ -67,9 +74,34 @@ class Game extends React.Component {
               Play again
             </button>
           </div>
-        ) : (
-          <div className="controls">{keyboardDisplay}</div>
-        )}
+        </div>
+      );
+    }
+
+    const gallows = <Gallows lives={this.state.lives} progress={mistakes} />;
+    if (mistakes >= this.state.lives) {
+      return (
+        <div className="word-display-container">
+          {gallows}
+          {wordDisplay}
+          <div className="msg-container lose-message">
+            Oops, you lost!
+            <button
+              onClick={() =>
+                this.setState({ word: randomWords().split(""), guessed: [] })
+              }
+            >
+              Play again
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return (
+      <div className="word-display-container">
+        {gallows}
+        {wordDisplay}
+        {keyboardDisplay}
       </div>
     );
   }

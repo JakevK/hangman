@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,500&display=swap");
 
+* {
+  --vw: min(1vh, 1vw);
+}
 body {
   margin: 0;
   padding: 0;
@@ -14,15 +17,15 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10vw;
+  gap: calc(10 * var(--vw));
 }
 .word-display {
   display: flex;
   flex-direction: row;
-  gap: 1vw;
+  gap: calc(1 * var(--vw));
 }
 .word-display-character {
-  font-size: 4vw;
+  font-size: calc(4 * var(--vw));
   font-weight: medium;
   margin: 0 5px 0 5px;
   padding: 0;
@@ -30,9 +33,9 @@ body {
   font-family: Montserrat;
 }
 .word-display-character-underline {
-  height: 0.3vw;
+  height: calc(0.3 * var(--vw));
   width: 100%;
-  border-radius: 0.2vw;
+  border-radius: calc(0.2 * var(--vw));
   background-color: #041d2f;
   align-self: flex-end;
 }
@@ -40,26 +43,26 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 5vw;
-  gap: 0.6vw;
+  width: calc(5 * var(--vw));
+  gap: calc(0.6 * var(--vw));
 }
 .keyboard {
   font-size: #041d2f;
-  width: 60vw;
+  width: calc(60 * var(--vw));
 }
 
 .keyboard button {
   background-color: #f6fbfe;
   border: none;
   font-family: montserrat;
-  font-size: 2.6vw;
+  font-size: calc(2.6 * var(--vw));
   color: #041d2f;
-  width: 4.5vw;
-  height: 4.5vw;
+  width: calc(4.5 * var(--vw));
+  height: calc(4.5 * var(--vw));
   text-align: center;
   transition: background-color 0.2s, color 0.3s;
   outline: none !important;
-  border-radius: 0.2vw;
+  border-radius: calc(0.2 * var(--vw));
 }
 .keyboard-button-enabled:hover {
   /*color: #39a0ed; 
@@ -71,25 +74,37 @@ body {
 .keyboard-button-incorrect {
   color: #ff8360 !important;
 }
-
 .win-message {
+  color: #17b890;
+}
+.lose-message {
+  color: #ff8360;
+}
+
+.msg-container {
   font-family: montserrat;
   font-weight: bold;
-  color: #17b890;
-  font-size: 4vw;
+  font-size: calc(4 * var(--vw));
   display: flex;
   flex-direction: column;
-  gap: 4vw;
+  gap: calc(4 * var(--vw));
   align-items: center;
 }
-.win-message button {
+.msg-container button {
   background-color: #f6fbfe;
-  color: #041d2f;
-  border: 0.2vw solid #041d2f;
+  color: #39a0ed;
+  border: calc(0.2 * var(--vw)) solid #39a0ed;
   outline: none;
-  padding: 1vw 2vw;
+  padding: calc(1 * var(--vw)) calc(2 * var(--vw));
   font-family: montserrat;
   font-weight: normal;
-  font-size: 2vw;
-  border-radius: 0.8vw;
+  font-size: calc(2 * var(--vw));
+  border-radius: calc(0.8 * var(--vw));
+}
+
+.red {
+  color: #ff8360;
+}
+.green {
+  color: #17b890;
 }
